@@ -1,2 +1,5 @@
+1.22	29th August, 2003
+	Adds undump, dumpfile, undumpfile as provided by Randal L. Schwartz
+
 1.21	30th July, 2003
 	Initial CPAN release

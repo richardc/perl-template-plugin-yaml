@@ -4,8 +4,7 @@ use Template::Plugin;
 use base 'Template::Plugin';
 use YAML qw(Dump Load DumpFile LoadFile);
 use vars qw($VERSION);
-$VERSION = 1.21;
-
+$VERSION = 1.22;
 
 =head1 NAME
 
@@ -17,9 +16,9 @@ Template::Plugin::YAML - Plugin interface to YAML
 
     [% YAML.dump(variable) %]
     [% YAML.dump_html(variable) %]
-    [% value = YAML.loadyaml(yaml_string) %]
+    [% value = YAML.undump(yaml_string) %]
     [% YAML.dumpfile(filename, variable) %]
-    [% value = YAML.loadfile(filename) %]
+    [% value = YAML.undumpfile(filename) %]
 
 =head1 DESCRIPTION
 
@@ -79,7 +78,7 @@ sub dump_html {
 }
 
 
-=head2 loadyaml( $string )
+=head2 undump( $string )
 
 Converts a YAML-encoded string into the equivalent data structure.
 Here's a way to deep-copy a complex structure by completely serializing
@@ -87,12 +86,12 @@ the data.
 
   [% USE yaml;
      yaml_string = yaml.dump(complex_data_structure);
-     complex_copy = yaml.loadyaml(yaml_string);
+     complex_copy = yaml.undump(yaml_string);
   %]
 
 =cut
 
-sub loadyaml {
+sub undump {
     my $self = shift;
     return Load shift;
 }
@@ -113,15 +112,15 @@ sub dumpfile {
 }
 
 
-=head2 loadfile( $file )
+=head2 undumpfile( $file )
 
 Loads the YAML-encoded data from the specified filepath
 
-  [% USE yaml; my_data = yaml.loadfile(".storage") %]
+  [% USE yaml; my_data = yaml.undumpfile(".storage") %]
 
 =cut
 
-sub loadfile {
+sub undumpfile {
     my $self = shift;
     return LoadFile @_;
 }
@@ -131,7 +130,7 @@ __END__
 
 =head1 AUTHORS
 
-Richard Clamp <richardc@unixbeard.net>, with load, loadfile, and
+Richard Clamp <richardc@unixbeard.net>, with undump, undumpfile, and
 dumpfile implementation by Randal L. Schwartz <merlyn@stonehenge.com>
 
 based on Simon Matthews' L<Template::Plugin::Dumper>
