@@ -1,0 +1,8 @@
+Build.PL
+README
+Changes
+Makefile.PL
+MANIFEST
+META.yml
+lib/Template/Plugin/YAML.pm
+t/00simple.t
