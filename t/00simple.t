@@ -2,13 +2,18 @@
 use strict;
 use Test::More tests => 3;
 use Template;
+use YAML;
 
 my $tt = new Template;
 my $out;
-ok( $tt->process(\"[% USE YAML %][% YAML.dump( struct ) %]", {
-        struct => [ { foo => 'bar' }, { foo => 'baz' } ],
-        }, \$out), "TT ran" );
+my $data = [ { foo => 'bar' }, { foo => 'baz' } ];
+ok( $tt->process(
+        \"[% USE YAML %][% YAML.dump( struct ) %]", { struct => $data, },
+        \$out
+    ),
+    "TT ran"
+);
 
-is( $tt->error, undef );
+ok( !$tt->error, "  without error" );
 
-is( $out, "--- #YAML:1.0\n- foo: bar\n- foo: baz\n", "got what we expected" );
+is_deeply( YAML::Load($out), $data, "YAML round tripped to original data" );
