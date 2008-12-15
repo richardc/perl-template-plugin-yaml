@@ -4,9 +4,9 @@
 ^Makefile(\.old)?
 ^Build$
 ~$
-^t/test.db$
 ^MANIFEST.SKIP
 ^cgi-bin
 \.svn/
-\.git/
+^\.git/
+^\.gitignore
 ^\.shipit
