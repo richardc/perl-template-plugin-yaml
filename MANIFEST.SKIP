@@ -9,3 +9,4 @@
 ^cgi-bin
 \.svn/
 \.git/
+^\.shipit
