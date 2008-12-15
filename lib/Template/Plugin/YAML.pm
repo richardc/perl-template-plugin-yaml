@@ -4,7 +4,7 @@ use Template::Plugin;
 use base 'Template::Plugin';
 use YAML qw(Dump Load DumpFile LoadFile);
 use vars qw($VERSION);
-$VERSION = 1.22;
+$VERSION = '1.22';
 
 =head1 NAME
 
