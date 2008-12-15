@@ -1,4 +1,4 @@
-HEAD
+1.23    15th December, 2008
         Fix the tests so we don't rely on golden output.  Should fix
         most of the failing smoke cases.
 
